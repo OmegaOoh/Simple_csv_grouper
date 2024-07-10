@@ -1,6 +1,6 @@
 from processor import Processor
 
-use_runtime_input = True  # Boolean to decide weather or not to use input at runtime
+use_runtime_input = False  # Boolean to decide weather or not to use input at runtime
 
 # Predefine
 file_name = ''  # Namelist File name

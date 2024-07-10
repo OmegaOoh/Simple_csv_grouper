@@ -24,11 +24,17 @@ class Processor:
 
     def make_a_group(self, prefix: str):
         """ Make a group and write to separate file with prefix"""
+
         file_name = f'{prefix}_' + self.__original_name
         i = 0
-        while os.path.exists(file_name + '.csv'):
-            i += 1
-            file_name = f'{prefix}_{self.__original_name}({i})'
+        if prefix.isspace():
+            while os.path.exists(self.__original_name + '.csv'):
+                i += 1
+            file_name = f'{self.__original_name}({i})'
+        else:
+            while os.path.exists(file_name + '.csv'):
+                i += 1
+                file_name = f'{prefix}_{self.__original_name}({i})'
 
         # calculate data for group quota
         total_num = len(self.__df)
