@@ -49,6 +49,9 @@ class Processor:
                 if group == 0:
                     group = len(self.group_names)
                 quota[group] += 1
+        print("Number of Person in each group: ")
+        for i in quota:
+            print(f'{self.group_names[i]}: {quota[i]}')
 
         new_df = self.__df.copy()
         new_df['Group'] = new_df.apply(lambda _: self.group_names[self.__add_to_group(quota)], axis=1)
