@@ -25,13 +25,15 @@ class Processor:
     def make_a_group(self, prefix: str):
         """ Make a group and write to separate file with prefix"""
 
-        file_name = f'{prefix}_' + self.__original_name
         i = 0
+
         if prefix.isspace():
-            while os.path.exists(self.__original_name + '.csv'):
+            file_name = f'{self.__original_name}'
+            while os.path.exists(file_name + '.csv'):
                 i += 1
-            file_name = f'{self.__original_name}({i})'
+                file_name = f'{self.__original_name}({i})'
         else:
+            file_name = f'{prefix}_' + self.__original_name
             while os.path.exists(file_name + '.csv'):
                 i += 1
                 file_name = f'{prefix}_{self.__original_name}({i})'
@@ -50,7 +52,7 @@ class Processor:
 
         new_df = self.__df.copy()
         new_df['Group'] = new_df.apply(lambda _: self.group_names[self.__add_to_group(quota)], axis=1)
-        new_df.to_csv(f'{file_name}.csv', index=False)
+        new_df.to_csv(f'{file_name}', index=False)
 
     def __add_to_group(self, group_quota: dict) -> int:
         group_choice = [i for i in self.group_names.keys() if group_quota[i] > 0]
