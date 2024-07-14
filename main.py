@@ -6,7 +6,7 @@ use_runtime_input = False  # Boolean to decide weather or not to use input at ru
 file_name = ''  # Namelist File name
 group_num = 0  # Number of group
 group_list = None  # Change to list "[]" if group name is applicable
-final_prefix = ''  # Add the prefix of the result file name
+final_prefix = '15 Jul 2024'  # Add the prefix of the result file name
 if use_runtime_input or (file_name == '' and group_num == 0 and group_list is None):
     print('Please enter start configuration: ')
     file_name = input('Enter filename: ')
@@ -16,7 +16,7 @@ if use_runtime_input or (file_name == '' and group_num == 0 and group_list is No
         group_list = list_str.split(',')
     final_prefix = input('Enter The prefix of result filename: ')
 
-processor = Processor(file_name, group_num)
+processor = Processor(file_name, group_num, group_list)
 
 processor.make_a_group(final_prefix)
 
